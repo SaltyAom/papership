@@ -1,0 +1,45 @@
+#dev {
+    position:fixed;
+    z-index: 9999;
+    bottom:0;
+    left:0;
+    width:275px;
+    margin: 0 calc(50% - 125px);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: skewX(-5deg);
+    opacity: .925;
+    transform: skewX(-15deg);
+    transition: opacity .25s ease-out;
+}
+
+#dev:hover { opacity: .25; }
+
+#dev > #title {
+    font-size: 21px;
+    margin:0;
+    color: var(--primary);
+    display: inline;
+    cursor: default;
+    text-shadow: 0 0 150px var(--primary);
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Oxygen, 'Helvetica Neue', Ubuntu, Cantarell, 'Open Sans', sans-serif;
+}
+
+#dev > #line {
+    display:flex;
+    width:100%;
+    height: 4px;
+    background-size: 65px;
+    background-image: linear-gradient(90deg, var(--primary) 0px, var(--primary) 50px, rgba(0,123,255,0.125) 50px, rgba(0,123,255,0.125) 100px);
+    background-repeat: repeat;
+    margin: 5px 0 3px 0;
+    animation: move 8s linear 0s infinite;
+    box-shadow: 0 0 50px var(--primary);
+}
+
+@keyframes move {
+    from { background-position-x: 0px; }    
+    to { background-position-x: 65px; }
+}

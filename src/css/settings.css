@@ -1,0 +1,14 @@
+#settings {
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width:100%;
+    min-height:100vh;
+    padding-top: 73px;
+}
+
+#settings > p {
+    color:var(--grey);
+    font-size:14px;
+}

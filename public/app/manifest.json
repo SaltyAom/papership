@@ -1,0 +1,32 @@
+{
+    "short_name": "Papership",
+    "name": "Papership",
+    "icons": [
+      {
+        "src": "/img/icon/ShinoX192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/img/icon/ShinoX192.jpg",
+        "type": "image/jpg",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/img/icon/ShinoX512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      },
+      {
+        "src": "/img/icon/ShinoX512.jpg",
+        "type": "image/jpg",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#ffffff",
+    "orientation": "portrait"
+}
