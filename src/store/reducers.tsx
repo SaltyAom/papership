@@ -3,7 +3,8 @@ export default (state: any, action: any) => {
         case "toggleDrawer":
             return {
                 ...state,
-                drawer: action.drawer
+                drawer: action.drawer,
+                blur: action.blur
             }
         case "updatePath":
             return{
@@ -18,6 +19,11 @@ export default (state: any, action: any) => {
         case "invoke":
               return{
                   ...state
+              }
+        case "blur":
+              return{
+                  ...state,
+                  blur: action.blur
               }
         default:
             return state;

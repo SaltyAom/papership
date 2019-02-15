@@ -3,7 +3,9 @@ import reducers from "./reducers"
 
 const initState: any = {
     drawer: false,
-    path: ""
+    path: "",
+    collection: [],
+    blur: 0
 }, store = createStore(reducers, initState);
 
 export default store;

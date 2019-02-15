@@ -1,6 +1,7 @@
 /* React */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import store from "./store/store"
 
 /* Navigator */
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
@@ -37,9 +38,29 @@ const theme = createMuiTheme({
 });
 
 interface state {
+    blur: number
 }
 
 class App extends Component<{}, state> {
+    constructor(props:any){
+        super(props);
+        this.state = {
+            blur: 0
+        }
+    }
+
+    componentDidMount(){
+        store.subscribe(() => {
+            let state:any = store.getState(),
+                blur:number = 0;
+            if(state.drawer) blur = 5;
+            if(state.blur) blur = state.blur;
+            this.setState({
+                blur: blur
+            })
+        })
+    }
+
     render(){
         return(
             <Router>
@@ -52,13 +73,15 @@ class App extends Component<{}, state> {
                     : null }
 
                     <Drawer />
-                    
-                    <Switch>
-                        <Route exact path="/" component={Dashboard} />
-                        <Route path="/settings" component={Settings} />
-                        <Route path="/collection" component={Collection} />
-                        <Route component={Error} />
-                    </Switch>
+
+                    <div style={{filter: `blur(${this.state.blur}px)`}}>
+                        <Switch>
+                            <Route exact path="/" component={Dashboard} />
+                            <Route path="/settings" component={Settings} />
+                            <Route path="/collection" component={Collection} />
+                            <Route component={Error} />
+                        </Switch>
+                    </div>
 
                 </MuiThemeProvider>
             </Router>

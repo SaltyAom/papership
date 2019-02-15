@@ -118,9 +118,8 @@ class Drawer extends Component<props, state> {
     toggleDrawer = (bool: boolean): void => {
         store.dispatch({
             type: "toggleDrawer",
-            drawer: bool
+            drawer: bool,
         })
-
     }
 
     render() {
@@ -139,6 +138,7 @@ class Drawer extends Component<props, state> {
         return (
             <Fragment>
                 <SwipeableDrawer
+                    id="drawer"
                     anchor="left"
 
                     disableSwipeToOpen={false}

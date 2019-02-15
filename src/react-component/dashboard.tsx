@@ -1,6 +1,7 @@
 /* React */
 import React, { Component, Fragment } from "react"
 import Dexie from "dexie"
+import store from "../store/store"
 
 /* Material UI */
 import { 
@@ -88,16 +89,21 @@ export default class extends Component<{}, state> {
         }
     }
 
-    openDialog(): void {
+    dialog = (bool:boolean): void => {
         this.setState({
-            dialog: true
+            dialog: bool
         })
-    }
-
-    closeDialog(): void {
-        this.setState({
-            dialog:false
-        })
+        if(bool){
+            store.dispatch({
+                type: "blur",
+                blur: 5
+            })
+        } else {
+            store.dispatch({
+                type: "blur",
+                blur: 0
+            })
+        }
     }
     
     toggleSelector = (bool: boolean) => {
@@ -164,7 +170,7 @@ export default class extends Component<{}, state> {
     render(){
         return(
             <Fragment>
-                <Appbar icon="add" function={() => this.openDialog()} />
+                <Appbar icon="add" function={() => this.dialog(true)} />
                 <div id="main">
                     <div id="dashboard-slider">
                         { this.state.collection.map((data: any, index:number) => 
@@ -172,7 +178,7 @@ export default class extends Component<{}, state> {
                         ) }
                         { (this.state.collection[0] === undefined) ? 
                             <Fragment>
-                                <Card color="red" title="New category" current={1} max={2} guide={true} onClick={() => this.openDialog()} />
+                                <Card color="red" title="New category" current={1} max={2} guide={true} onClick={() => this.dialog(true)} />
                                 <Card color="green" title="Guidance" current={2} max={2} guide={true} />
                             </Fragment> : 
                             <Fragment></Fragment> }
@@ -183,9 +189,6 @@ export default class extends Component<{}, state> {
                     <form action="" method="POST" onSubmit={e => this.newCollection(e)}>
                         <DialogTitle id="form-dialog-title">New Category</DialogTitle>
                         <DialogContent>
-                            <DialogContentText>
-                                Collection of data for an easier management.
-                            </DialogContentText>
                             <TextField
                                 autoFocus
                                 margin="normal"
@@ -195,7 +198,7 @@ export default class extends Component<{}, state> {
                                 variant="outlined"
                                 onChange={e => this.handleTitle(e)}
                                 value={this.state.title}
-                                style={{marginTop:"30px",marginBottom:"0px"}}
+                                style={{marginTop:"20px",marginBottom:"0px"}}
                             />
                             <FormControl style={{width: "100%"}} variant="outlined">
                                 <InputLabel htmlFor="Color selection" style={{marginTop:"14px"}}>Color</InputLabel>
@@ -277,7 +280,7 @@ export default class extends Component<{}, state> {
                             </FormControl>
                         </DialogContent>
                         <DialogActions>
-                            <Button color="primary" onClick={() => this.closeDialog()}>
+                            <Button color="primary" onClick={() => this.dialog(false)}>
                                 Cancel
                             </Button>
                             <Button color="primary" type="submit">

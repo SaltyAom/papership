@@ -38,6 +38,14 @@
     animation: card-appear .3s ease-out 0s 1;
 }
 
+#dashboard-dialog > div:first-child {
+    background-color: transparent;
+}
+
+#form-dialog-title {
+    padding-bottom:0;
+}
+
 .dashboard-card > div, .dashboard-card > h1, .dashboard-card > div > h6, .dashboard-card > div > div, .dashboard-card > div > div > div { cursor:pointer; }
 
 @keyframes card-appear {
