@@ -74,7 +74,7 @@ class App extends Component<{}, state> {
 
                     <Drawer />
 
-                    <div style={{filter: `blur(${this.state.blur}px)`}}>
+                    <div id="root-wrapper" style={{filter: `blur(${this.state.blur}px)`}}>
                         <Switch>
                             <Route exact path="/" component={Dashboard} />
                             <Route path="/settings" component={Settings} />

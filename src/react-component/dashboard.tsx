@@ -135,6 +135,11 @@ export default class extends Component<{}, state> {
     newCollection = (e:any): void => {
         e.preventDefault();
         if(this.state.selectorValue === "" || this.state.selectorValue === "" || this.state.collectionType === "") return;
+        store.dispatch({
+            type: "blur",
+            blur: 0
+        })
+
         this.setState({
             selector:false,
             dialog: false,
@@ -190,7 +195,6 @@ export default class extends Component<{}, state> {
                         <DialogTitle id="form-dialog-title">New Category</DialogTitle>
                         <DialogContent>
                             <TextField
-                                autoFocus
                                 margin="normal"
                                 label="Category Name"
                                 type="text"

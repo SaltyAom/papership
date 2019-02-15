@@ -136,6 +136,10 @@ a.link:active { color:var(--fade); }
     font-weight: bold;
 }
 
+#root-wrapper {
+    transition: blur .25s ease-out;
+}
+
 @media screen and (max-height:450px) {
     #dashboard-slider {
         margin-top: 35px;
