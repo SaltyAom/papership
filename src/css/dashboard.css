@@ -177,7 +177,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    animation: slide-up .325s ease-out 0s 1;
+    animation: slide-up .275s ease-out 0s 1;
 }
 
 @keyframes slide-up {

@@ -36,7 +36,6 @@ export default class extends Component<props,state> {
     }
 
     render(){
-        console.log(this.props.current);
         let percent = ( this.props.current / this.props.max ) * 100;
         if(this.state.redirect){
             return(

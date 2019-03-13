@@ -1,5 +1,5 @@
 /* React */
-import React, { Component, Fragment } from "react"
+import React, { Component } from "react"
 import store from "../store/store"
 
 /* Material UI */
@@ -8,11 +8,42 @@ import {
     List,
     ListItem,
     ListItemText,
-    Button
+    Button,
+    ExpansionPanel,
+    ExpansionPanelSummary,
+    ExpansionPanelDetails,
+    ExpansionPanelActions
 } from '@material-ui/core'
 
 /* Local */
 import "../css/settings.css"
+
+interface settingProps {
+    title: string,
+    content: string,
+    button: string,
+    function: any
+}
+
+class SettingPanel extends Component<settingProps,{}> {
+    render(){
+        return(
+            <ExpansionPanel className="setting-panel">
+                <ExpansionPanelSummary expandIcon={<i className="material-icons">expand_more</i>}>
+                    <p>{this.props.title}</p>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                    <p>{this.props.content}</p>
+                </ExpansionPanelDetails>
+                <ExpansionPanelActions>
+                    <Button color="primary" onClick={() => this.props.function()}>
+                        {this.props.button}
+                    </Button>
+                </ExpansionPanelActions>
+            </ExpansionPanel>
+        )
+    }
+}
 
 interface state {
     blur:number
@@ -88,7 +119,7 @@ export default class extends Component<{},state> {
 
     render(){
         return(
-            <Fragment>
+            <>
                 <div id="appbar" style={{filter: `blur(${this.state.blur}px)`}}>
                     <div>
                         <IconButton color="primary" onClick={() => this.toggleDrawer()}>
@@ -100,15 +131,21 @@ export default class extends Component<{},state> {
                     </div>
                     <div></div>
                 </div>
-                <List id="settings" style={{filter: `blur(${this.state.blur}px)`}}>
-                    <ListItem button onClick={() => this.cacheUpdate()}>
-                        <ListItemText primary="Force update" />
-                    </ListItem>
-                    <ListItem button onClick={() => this.clearCache() }>
-                        <ListItemText primary="Clear cache!" />
-                    </ListItem>
-                </List>
-            </Fragment>
+                <div id="settings" style={{filter: `blur(${this.state.blur}px)`}}>
+                    <SettingPanel 
+                        title="Clear Cache"
+                        content="Clear all cache in localstorage and cookies"
+                        button="Clear Cache"
+                        function={() => this.cacheUpdate()}
+                    />
+                    <SettingPanel 
+                        title="Force Update"
+                        content="Clear all and register new cache of PWA and force reload to update service worker."
+                        button="Force Update"
+                        function={() => this.cacheUpdate()}
+                    />
+                </div>
+            </>
         )
     }
 }

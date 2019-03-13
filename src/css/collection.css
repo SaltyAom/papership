@@ -178,7 +178,15 @@
     color: var(--fade);
 }
 
-.strike-through > span { color: var(--fade); }
+.strike-through > span { 
+    color: var(--fade); 
+}
+
+.list-text > span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 #collection-info {
     width:100%;
@@ -198,6 +206,12 @@
 
 #collection-landing {
     animation: collection-landing-in .3s ease-out 0s 1;
+}
+
+.document-delete {
+    color:var(--danger) !important;
+    padding:4px 8px !important;
+    animation: collection-title-in .25s ease-out 0s 1;
 }
 
 @keyframes collection-landing-in {

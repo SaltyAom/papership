@@ -5,7 +5,8 @@ import { IconButton } from "@material-ui/core"
 interface props {
     function?: any,
     icon?: string,
-    title?: string
+    title?: string,
+    blur?: number
 }
 
 export default class extends Component<props, {}> {
@@ -18,7 +19,7 @@ export default class extends Component<props, {}> {
 
     render(){
         return(
-            <div id="appbar">
+            <div id="appbar" style={{filter:`blur(${this.props.blur}px)`}}>
                 <div>
                     <IconButton color="primary" onClick={() => this.toggleDrawer()}>
                         <span className="material-icons">menu</span>

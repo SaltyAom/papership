@@ -5,10 +5,24 @@
     align-items: flex-start;
     width:100%;
     min-height:100vh;
-    padding-top: 73px;
+    padding: 73px 5% 25px 5%;
 }
 
 #settings > p {
     color:var(--grey);
     font-size:14px;
+}
+
+.setting-panel > div:first-child {
+    border-bottom:1px solid var(--fade);
+    margin:0;
+}
+
+.setting-panel > div:first-child[aria-expanded="true"] > div:first-child {
+    margin:10px 0;
+}
+
+.setting-panel > div:last-child > div > div > div:first-child {
+    padding-top:7px;
+    padding-bottom:0;
 }

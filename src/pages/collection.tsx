@@ -125,9 +125,6 @@ class CollectionList extends Component<collectionProps, collectionState> {
                     divider
                     onClick={() => this.toggle()}
                 >
-                    <span className="collection-red material-icons" style={{marginRight: "10px"}} onClick={() => this.props.reloadFunction(this.props.uid)}>
-                        remove_circle
-                    </span>
                     {this.state.check ?
                         <Fragment>
                             <Checkbox
@@ -146,6 +143,9 @@ class CollectionList extends Component<collectionProps, collectionState> {
                             <ListItemText primary={this.props.name} />
                         </Fragment>
                     }
+                    <Button className="document-delete" onClick={() => this.props.reloadFunction(this.props.uid)}>
+                        Delete
+                    </Button>
                 </ListItem>
             )
         } else {
@@ -162,7 +162,7 @@ class CollectionList extends Component<collectionProps, collectionState> {
                                 color="primary"
                                 className={`collection-check-${this.props.color}`}
                             />
-                            <ListItemText className="strike-through" primary={this.props.name} />
+                            <ListItemText className="strike-through list-text" primary={this.props.name} />
                         </Fragment>
                         :
                         <Fragment>
@@ -170,7 +170,7 @@ class CollectionList extends Component<collectionProps, collectionState> {
                                 checked={this.state.check}
                                 color="primary"
                             />
-                            <ListItemText primary={this.props.name} />
+                            <ListItemText className="list-text" primary={this.props.name} />
                         </Fragment>
                     }
                 </ListItem>

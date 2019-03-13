@@ -273,14 +273,14 @@ export default class extends Component<{}, state> {
     render(){
         return(
             <Fragment>
-                <Appbar icon="border_color" function={() => this.viewCollection(true)} />
+                <Appbar icon="add" blur={this.state.blur} function={() => this.dialog(true)} />
                 <Fab 
                     id="fab" 
                     color="primary" 
-                    onClick={() => this.dialog(true)}
+                    onClick={() => this.viewCollection(true)}
                     style={{filter: `blur(${this.state.blur}px)`}}
                 >
-                    <span className="material-icons" style={{color: "white"}}>add</span>
+                    <span className="material-icons" style={{color: "white"}}>create</span>
                 </Fab>
                 <div id="main" style={{filter: `blur(${this.state.blur}px)`}}>
                     <div id="dashboard-slider">
