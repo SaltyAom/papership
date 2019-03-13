@@ -55,7 +55,7 @@ class CollectionLanding extends Component<sideProps, {}> {
                             {this.props.current ?
                             <>{this.props.current}</>
                             :
-                            null
+                            <>No todo left</>
                             }
                             </p>
                             <p className={`collection-title collection-${this.props.color}`}>

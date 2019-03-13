@@ -89,15 +89,15 @@
 
 .collection-red,
 .collection-check-red > span > svg > path,
-.collection-textfield-red > label[data-shrink*="true"] {color: var(--collection-red);}
+.collection-textfield-red > label[data-shrink*="true"] {color: var(--collection-red) !important;}
 .collection-green,
-.collection-check-green > span > svg > path {color: var(--collection-green);}
+.collection-check-green > span > svg > path {color: var(--collection-green) !important;}
 .collection-blue,
-.collection-check-blue > span > svg > path {color: var(--collection-blue);}
+.collection-check-blue > span > svg > path {color: var(--collection-blue) !important;}
 .collection-pink,
-.collection-check-pink > span > svg > path {color: var(--collection-pink);}
+.collection-check-pink > span > svg > path {color: var(--collection-pink) !important;}
 .collection-violet,
-.collection-check-violet > span > svg > path {color: var(--collection-violet);}
+.collection-check-violet > span > svg > path {color: var(--collection-violet) !important;}
 
 .collection-background-red {background-color: var(--collection-red) !important;}
 .collection-background-green {background-color: var(--collection-green) !important;}
