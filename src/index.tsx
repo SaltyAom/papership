@@ -6,18 +6,17 @@ import store from "./store/store"
 /* Navigator */
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
-/* Material Icon */
+/* Material UI */
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import { blue } from "@material-ui/core/colors"
 
 /* React Component */
 import Drawer from "./react-component/drawer"
-import Dashboard from "./react-component/dashboard"
-import Collection from "./react-component/collection"
-import Settings from "./react-component/settings"
+import Dashboard from "./pages/dashboard"
+import Collection from "./pages/collection"
+import Settings from "./pages/settings"
 import Error from "./react-component/error"
-import Redirect from "./react-component/redirect"
 
 /* CSS */
 import "./material-icon/material-icons.css"

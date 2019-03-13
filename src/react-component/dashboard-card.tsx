@@ -13,19 +13,13 @@ interface props {
 }
 
 interface state {
-    current: string,
-    max: string,
-    percent: number,
-    redirect: boolean,
+    redirect: boolean
 }
 
 export default class extends Component<props,state> {
     constructor(props: any){
         super(props);
         this.state = {
-            current: this.props.current.toString(),
-            max: this.props.max.toString(),
-            percent:  ( this.props.current / this.props.max ) * 100,
             redirect: false
         }
     }
@@ -42,6 +36,8 @@ export default class extends Component<props,state> {
     }
 
     render(){
+        console.log(this.props.current);
+        let percent = ( this.props.current / this.props.max ) * 100;
         if(this.state.redirect){
             return(
                 <Redirect push to="/collection" />
@@ -52,9 +48,9 @@ export default class extends Component<props,state> {
                 <div className={`dashboard-card ${this.props.color}`} onClick={e => this.props.onClick()}>
                     <h1>{this.props.title}</h1>
                     <div>
-                        <h6>{this.state.current}/{this.state.max}</h6>
+                        <h6>{`${this.props.current}`}/{`${this.props.max}`}</h6>
                         <div className="dashboard-progress-bar">
-                            <div style={{width: `${this.state.percent}%`}}></div>
+                            <div style={{width: `${percent}%`}}></div>
                         </div>
                     </div>
                 </div>
@@ -64,9 +60,9 @@ export default class extends Component<props,state> {
                 <div className={`dashboard-card ${this.props.color}`} onClick={e => this.redirect(e)}>
                     <h1>{this.props.title}</h1>
                     <div>
-                        <h6>{this.state.current}/{this.state.max}</h6>
+                    <h6>{`${this.props.current}`}/{`${this.props.max}`}</h6>
                         <div className="dashboard-progress-bar">
-                            <div style={{width: `${this.state.percent}%`}}></div>
+                            <div style={{width: `${percent}%`}}></div>
                         </div>
                     </div>
                 </div>

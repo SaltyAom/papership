@@ -141,7 +141,7 @@ class Drawer extends Component<props, state> {
                     id="drawer"
                     anchor="left"
 
-                    disableSwipeToOpen={false}
+                    disableSwipeToOpen={true}
                     open={this.state.drawer}
                     onOpen={() => this.toggleDrawer(true)}
                     onClose={() => this.toggleDrawer(false)}

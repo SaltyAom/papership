@@ -1,4 +1,4 @@
-#appbar {
+#appbar, #manage-appbar {
     width:100%;
     min-height:30px;
     background-color:#fff;
@@ -13,7 +13,7 @@
     left:0;
 }
 
-#appbar > div {
+#appbar > div, #manage-appbar > div {
     display:inline-flex;
     align-items: center;
     font-size: 21px;
@@ -22,8 +22,24 @@
     flex-basis: 0;
 }
 
-#appbar > div:nth-child(2){ justify-content: center; }
-#appbar > div:nth-child(3){ justify-content: flex-end; }
+#appbar > div:nth-child(2), #manage-appbar > div:nth-child(2) { justify-content: center; }
+#appbar > div:nth-child(3), #manage-appbar > div:nth-child(3) { justify-content: flex-end; }
+
+#manage-appbar > div:nth-child(1), #manage-appbar > div:nth-child(3){
+    width: 48px;
+    height:48px;
+    flex:unset;
+}
+
+#manage-appbar {
+    position: relative;
+    height:58px;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.115);
+}
+
+#manage-appbar > div {
+    color:var(--primary);
+}
 
 #fab {
     position:fixed;

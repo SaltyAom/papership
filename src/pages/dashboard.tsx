@@ -14,17 +14,48 @@ import {
     DialogContent,
     DialogTitle,
     FormControl,
-    DialogContentText, 
     InputLabel,
-    OutlinedInput
+    OutlinedInput,
+    Fab,
+    IconButton,
+    ListItem
 } from "@material-ui/core"
 
 /* Component */
-import Card from "./dashboard-card"
-import Appbar from "./appbar"
+import Card from "../react-component/dashboard-card"
+import Appbar from "../react-component/appbar"
 
 /* Local */
 import "../css/dashboard.css"
+
+interface collectionProps {
+    name: string,
+    id: number,
+    function:any
+}
+
+class CollectionList extends Component<collectionProps, {}>{
+    constructor(props: collectionProps){
+        super(props);
+    }
+
+    render(){
+        return(
+            <ListItem
+                className="collection-list"
+                divider
+            >
+                <p>
+                    <i className="material-icons">view_week</i>
+                    {this.props.name}
+                </p>
+                <Button style={{color:"var(--danger)"}} onClick={() => this.props.function(this.props.id)}>
+                    Delete
+                </Button>
+            </ListItem>
+        )
+    }
+}
 
 interface state {
     dialog: boolean,
@@ -35,7 +66,9 @@ interface state {
     collection: any,
     collectionType: string,
     typeSelector: boolean,
-    blur: number
+    blur: number,
+    manageCollection: boolean,
+    collectionData: any
 }
 
 export default class extends Component<{}, state> {
@@ -50,7 +83,9 @@ export default class extends Component<{}, state> {
             collection: [],
             collectionType: "",
             typeSelector: false,
-            blur: 0
+            blur: 0,
+            manageCollection: false,
+            collectionData: []
         }
     }
 
@@ -174,11 +209,60 @@ export default class extends Component<{}, state> {
         this.loadCollection();
     }
 
-    loadCollection():void {
+    loadCollection = async () => {
+        const collection = new Dexie("collection"),
+            document = new Dexie("document");
+
+        collection.version(1).stores({
+            category: "++id, name, color, type",
+        });
+        
+        await collection.table("category").orderBy("id").toArray(data => {
+            this.setState({
+                collection: data
+            })
+        });
+
+        document.version(1).stores({
+            todo: "++id, objective, check, category"
+        });
+
+        this.setState({
+            collectionData: []
+        });
+
+        await this.state.collection.map(async(data:any, index:number) => {
+            await document.table("todo").where({"category": data.name}).toArray(arr => {
+                let iter:number = 0;
+                arr.map((data, index) => {
+                    if(data.check === true) return ++iter
+                })
+                this.setState(prevState => ({
+                    collectionData: [...prevState.collectionData, {
+                        min: iter,
+                        max: arr.length
+                    }]
+                }))
+            });
+        })
+
+    }
+
+    viewCollection = (bool:boolean) => {
+        this.setState({
+            manageCollection: bool
+        })
+    }
+
+    collectionDelete = async (id:number) => {
         const collection = new Dexie("collection")
         collection.version(1).stores({
             category: "++id, name, color, type"
         })
+        await collection.table("category").where({id: id}).delete();
+            this.setState({
+                collection: []
+            })
         collection.table("category").orderBy("id").toArray(data => {
             this.setState({
                 collection: data
@@ -189,11 +273,37 @@ export default class extends Component<{}, state> {
     render(){
         return(
             <Fragment>
-                <Appbar icon="add" function={() => this.dialog(true)} />
+                <Appbar icon="border_color" function={() => this.viewCollection(true)} />
+                <Fab 
+                    id="fab" 
+                    color="primary" 
+                    onClick={() => this.dialog(true)}
+                    style={{filter: `blur(${this.state.blur}px)`}}
+                >
+                    <span className="material-icons" style={{color: "white"}}>add</span>
+                </Fab>
                 <div id="main" style={{filter: `blur(${this.state.blur}px)`}}>
                     <div id="dashboard-slider">
                         { this.state.collection.map((data: any, index:number) => 
-                            <Card title={`${data.name}`} color={`${data.color}`} current={0} max={0} key={index} />
+                            <Fragment key={index}>
+                                {this.state.collectionData[index] !== undefined ?
+                                    <Card 
+                                        title={data.name} 
+                                        color={data.color} 
+                                        current={this.state.collectionData[index].min}
+                                        max={this.state.collectionData[index].max}
+                                        key={index} 
+                                    />
+                                : 
+                                    <Card 
+                                        title={data.name} 
+                                        color={data.color} 
+                                        current={0} 
+                                        max={0} 
+                                        key={index} 
+                                    />
+                                }
+                            </Fragment>
                         ) }
                         { (this.state.collection[0] === undefined) ? 
                             <Fragment>
@@ -307,6 +417,34 @@ export default class extends Component<{}, state> {
                         </DialogActions>
                     </form>
                 </Dialog>
+                {this.state.manageCollection ?
+                <div id="manage-collection-dialog">
+                    <div id="manage-appbar">
+                        <div>
+                            <IconButton onClick={() => this.viewCollection(false)}>
+                                <i className="material-icons">close</i>
+                            </IconButton>
+                        </div>
+                        <div>
+                            <p>
+                                Manage Collection
+                            </p>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                    <div id="manage-list">
+                        {this.state.collection.map((data:any, index:number) =>
+                            <CollectionList 
+                                key={index}
+                                name={data.name}
+                                id={data.id}
+                                function={() => this.collectionDelete(data.id)}
+                            />
+                        )}
+                    </div>
+                </div>
+                : null }
             </Fragment>
         )
     }

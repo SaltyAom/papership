@@ -242,7 +242,7 @@ class Collection extends Component<props, state> {
                 });
                 document.table("todo").where({
                     "category": this.state.collection
-                }).toArray(async arr => {    
+                }).toArray(async arr => {
                     let iter:number = 0;
                     this.setState({
                         current: ""
