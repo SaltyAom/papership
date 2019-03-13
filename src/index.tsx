@@ -38,27 +38,11 @@ const theme = createMuiTheme({
 });
 
 interface state {
-    blur: number
+    blur:number
 }
-
 class App extends Component<{}, state> {
     constructor(props:any){
         super(props);
-        this.state = {
-            blur: 0
-        }
-    }
-
-    componentDidMount(){
-        store.subscribe(() => {
-            let state:any = store.getState(),
-                blur:number = 0;
-            if(state.drawer) blur = 5;
-            if(state.blur) blur = state.blur;
-            this.setState({
-                blur: blur
-            })
-        })
     }
 
     render(){
@@ -74,14 +58,12 @@ class App extends Component<{}, state> {
 
                     <Drawer />
 
-                    <div id="root-wrapper" style={{filter: `blur(${this.state.blur}px)`}}>
-                        <Switch>
-                            <Route exact path="/" component={Dashboard} />
-                            <Route path="/settings" component={Settings} />
-                            <Route path="/collection" component={Collection} />
-                            <Route component={Error} />
-                        </Switch>
-                    </div>
+                    <Switch>
+                        <Route exact path="/" component={Dashboard} />
+                        <Route path="/settings" component={Settings} />
+                        <Route path="/collection" component={Collection} />
+                        <Route component={Error} />
+                    </Switch>
 
                 </MuiThemeProvider>
             </Router>
@@ -89,4 +71,4 @@ class App extends Component<{}, state> {
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('papership'));

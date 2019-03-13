@@ -14,7 +14,30 @@ import {
 /* Local */
 import "../css/settings.css"
 
-export default class extends Component {
+interface state {
+    blur:number
+}
+
+export default class extends Component<{},state> {
+    constructor(props:any){
+        super(props);
+        this.state = {
+            blur: 0
+        }
+    }
+
+    componentDidMount(){
+        store.subscribe(() => {
+            let state:any = store.getState(),
+                blur:number = 0;
+            if(state.drawer) blur = 5;
+            if(state.blur) blur = state.blur;
+            this.setState({
+                blur: blur
+            })
+        })
+    }
+
     toggleDrawer(): void {
         store.dispatch({
             type: "toggleDrawer",
@@ -35,7 +58,7 @@ export default class extends Component {
             } 
         }).then(():void => {
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('serviceWorker.js')
+                navigator.serviceWorker.register('sw.js')
                 .then(registration => {
                     console.info('Registered:', registration);
                 }).catch(err => {
@@ -44,7 +67,7 @@ export default class extends Component {
             }
         }).then(():void => {
             setInterval(() => {
-                window.location.replace("/papership/")
+                window.location.replace("/")
             }, 1000)
         });
     }
@@ -66,7 +89,7 @@ export default class extends Component {
     render(){
         return(
             <Fragment>
-                <div id="appbar">
+                <div id="appbar" style={{filter: `blur(${this.state.blur}px)`}}>
                     <div>
                         <IconButton color="primary" onClick={() => this.toggleDrawer()}>
                             <span className="material-icons">menu</span>
@@ -77,7 +100,7 @@ export default class extends Component {
                     </div>
                     <div></div>
                 </div>
-                <List id="settings">
+                <List id="settings" style={{filter: `blur(${this.state.blur}px)`}}>
                     <ListItem button onClick={() => this.cacheUpdate()}>
                         <ListItemText primary="Force update" />
                     </ListItem>

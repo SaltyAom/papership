@@ -34,7 +34,8 @@ interface state {
     title: string,
     collection: any,
     collectionType: string,
-    typeSelector: boolean
+    typeSelector: boolean,
+    blur: number
 }
 
 export default class extends Component<{}, state> {
@@ -48,12 +49,25 @@ export default class extends Component<{}, state> {
             title: "",
             collection: [],
             collectionType: "",
-            typeSelector: false
+            typeSelector: false,
+            blur: 0
         }
     }
 
     componentWillMount():void {
         this.loadCollection();
+    }
+
+    componentDidMount(){
+        store.subscribe(() => {
+            let state:any = store.getState(),
+                blur:number = 0;
+            if(state.drawer) blur = 5;
+            if(state.blur) blur = state.blur;
+            this.setState({
+                blur: blur
+            })
+        })
     }
 
     componentWillUpdate(nextProps:any, nextState:any): void {
@@ -176,7 +190,7 @@ export default class extends Component<{}, state> {
         return(
             <Fragment>
                 <Appbar icon="add" function={() => this.dialog(true)} />
-                <div id="main">
+                <div id="main" style={{filter: `blur(${this.state.blur}px)`}}>
                     <div id="dashboard-slider">
                         { this.state.collection.map((data: any, index:number) => 
                             <Card title={`${data.name}`} color={`${data.color}`} current={0} max={0} key={index} />

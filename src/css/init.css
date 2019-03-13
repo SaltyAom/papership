@@ -33,7 +33,7 @@
 
 ::selection, ::-webkit-selection { background-color: rgba(0,123,255,.25); }
 
-* {box-sizing: border-box;}
+* {box-sizing: border-box; transition: filter .275s ease-out;}
 
 body {
   margin: 0;

@@ -30,7 +30,8 @@ interface sideProps {
     color: string,
     collection: string,
     type: string,
-    progress: any
+    progress: any,
+    current: string
 }
 
 class CollectionLanding extends Component<sideProps, {}> {
@@ -50,7 +51,13 @@ class CollectionLanding extends Component<sideProps, {}> {
                     </div>
                     <div id="collection-progress-wrapper">
                         <div id="collection-title-wrapper">
-                            <p className={`collection-title collection-${this.props.color}`}>Hello World</p>
+                            <p className={`collection-title collection-${this.props.color}`}>
+                            {this.props.current ?
+                            <>{this.props.current}</>
+                            :
+                            null
+                            }
+                            </p>
                             <p className={`collection-title collection-${this.props.color}`}>
                                 {this.props.progress.min}/{this.props.progress.max}
                             </p>
@@ -98,7 +105,7 @@ class CollectionList extends Component<collectionProps, collectionState> {
             todo: "++id, objective, check, category"
         });
 
-        document.table("todo").where({objective: this.props.name}).modify({
+        document.table("todo").where({id: this.props.uid}).modify({
             check: !this.state.check
         }).then(() => {
             store.dispatch({
@@ -184,7 +191,9 @@ interface state {
     objective: string,
     documentData: any,
     edit: boolean,
-    progress: any
+    progress: any,
+    blur: number,
+    current: string
 }
 
 class Collection extends Component<props, state> {
@@ -202,7 +211,9 @@ class Collection extends Component<props, state> {
             progress: {
                 min: 0,
                 max: 0
-            }
+            },
+            blur: 0,
+            current: ""
         }
     }
 
@@ -224,24 +235,41 @@ class Collection extends Component<props, state> {
 
     componentDidMount(){
         store.subscribe(async () => {
-            if(this.state.collection === undefined) return;
-            const document = new Dexie("document");
-            await document.version(1).stores({
-                todo: "++id, objective, check, category"
-            });
-            document.table("todo").where({
-                "category": this.state.collection
-            }).toArray(async arr => {    
-                let iter:number = 0;
-                await arr.map((data, index) => {
-                    if(data.check === true) return ++iter
+            if(this.state.collection !== undefined){
+                const document = new Dexie("document");
+                await document.version(1).stores({
+                    todo: "++id, objective, check, category"
+                });
+                document.table("todo").where({
+                    "category": this.state.collection
+                }).toArray(async arr => {    
+                    let iter:number = 0;
+                    this.setState({
+                        current: ""
+                    })
+                    await arr.map((data, index) => {
+                        if(this.state.current === "" && data.check === false){
+                            this.setState({
+                                current: data.objective
+                            })
+                        }
+                        if(data.check === true) return ++iter
+                    })
+                    this.setState({
+                        progress:{
+                            min: iter,
+                            max: arr.length
+                        }
+                    })
                 })
-                this.setState({
-                    progress:{
-                        min: iter,
-                        max: arr.length
-                    }
-                })
+            }
+            let state:any = store.getState();
+            if(this.state.blur === state.blur) return;
+            let blur:number = 0
+            if(state.drawer) blur = 5;
+            if(state.blur) blur = state.blur;
+            this.setState({
+                blur: blur
             })
         })
     }
@@ -256,12 +284,18 @@ class Collection extends Component<props, state> {
 
         document.table("todo").where({"category": this.state.collection}).toArray(async arr => {
             await this.setState({
-                documentData: []
+                documentData: [],
+                current: ""
             })
             if(arr[0] === undefined) return;
 
             let iter:number = 0;
             await arr.map((data, index) => {
+                if(this.state.current === "" && data.check == false){
+                    this.setState({
+                        current: data.objective
+                    })
+                }
                 this.setState(prevState => ({
                     documentData: [...prevState.documentData, data]
                 }))
@@ -330,15 +364,15 @@ class Collection extends Component<props, state> {
 
     render(){
         if(this.state.collection === undefined){
-            return(
-                <Error />
-            )
+            return <Error />
+        } else if(this.props.history.action === "POP"){
+            return <Error />
         } else if(this.state.color === "") {
             return null;
         } else {
             return(
                 <Fragment>
-                    <div id="appbar">
+                    <div id="appbar" style={{filter: `blur(${this.state.blur}px)`}}>
                         <div>
                             <IconButton onClick={() => this.props.history.goBack()}>
                                 <span className={`material-icons collection-${this.state.color}`}>arrow_back</span>
@@ -359,6 +393,7 @@ class Collection extends Component<props, state> {
                         color="primary" 
                         className={`collection-background-${this.state.color}`}
                         onClick={() => this.dialog(true)}
+                        style={{filter: `blur(${this.state.blur}px)`}}
                     >
                         <span className="material-icons" style={{color: "white"}}>add</span>
                     </Fab>
@@ -368,7 +403,7 @@ class Collection extends Component<props, state> {
                         onClose={() => this.dialog(true)}
                         aria-labelledby="form-dialog-title"
                     >
-                        <div id="collection-appbar">
+                        <div id="collection-appbar" style={{filter: `blur(${this.state.blur}px)`}}>
                             <div>
                                 <IconButton onClick={() => this.dialog(false)}>
                                     <span className={`material-icons collection-${this.state.color}`}>
@@ -384,6 +419,7 @@ class Collection extends Component<props, state> {
                             action="" 
                             method="POST"
                             onSubmit={e => this.addNewObjective(e)}
+                            style={{filter: `blur(${this.state.blur}px)`}}
                         >
                             <TextField
                                 autoFocus
@@ -408,12 +444,13 @@ class Collection extends Component<props, state> {
                             </Button>
                         </form>
                     </Dialog>
-                    <div id="collection">
+                    <div id="collection" style={{filter: `blur(${this.state.blur}px)`}}>
                         <CollectionLanding
                             color={this.state.color} 
                             collection={this.state.collection} 
                             type={this.state.type}
                             progress={this.state.progress}
+                            current={this.state.current}
                         />
                         <List id="collection-list">
                             {this.state.documentData.map((data: any, index: number) => 
