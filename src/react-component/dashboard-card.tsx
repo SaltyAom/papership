@@ -47,6 +47,7 @@ export default class extends Component<props,state> {
         if(this.props.onClick){
             return(
                 <ButtonBase onClick={e => this.props.onClick()} className={`dashboard-card ${this.props.color}`}>
+                    <p className="hidden-card-length">---------------------------------------------------------------------------------------</p>
                     <h1>{this.props.title}</h1>
                     <div>
                         <h6>{`${this.props.current}`}/{`${this.props.max}`}</h6>
@@ -59,9 +60,10 @@ export default class extends Component<props,state> {
         } else {
             return(
                 <ButtonBase onClick={e => this.redirect(e)} className={`dashboard-card ${this.props.color}`}>
+                    <p className="hidden-card-length">---------------------------------------------------------------------------------------</p>
                     <h1>{this.props.title}</h1>
                     <div>
-                    <h6>{`${this.props.current}`}/{`${this.props.max}`}</h6>
+                        <h6>{`${this.props.current}`}/{`${this.props.max}`}</h6>
                         <div className="dashboard-progress-bar">
                             <div style={{width: `${percent}%`}}></div>
                         </div>

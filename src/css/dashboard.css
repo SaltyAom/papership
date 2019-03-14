@@ -73,7 +73,7 @@
     display:flex;
     flex:1;
     width:100%;
-    font-size: 36px;
+    font-size: 32px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -197,3 +197,9 @@
     box-shadow: 0 25px 50px rgba(108, 22, 225, 0.4);
 }
 .dashboard-card.violet:active { box-shadow: 0 20px 70px rgba(108,22,225, 0.7); }
+
+.hidden-card-length {
+    opacity:0;
+    margin:0;
+    height:1px;
+}
