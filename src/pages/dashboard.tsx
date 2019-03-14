@@ -283,9 +283,6 @@ export default class extends Component<{}, state> {
 
         await document.table("todo").where({"category": collectionName}).delete();
 
-        this.setState({
-            collection: []
-        })
         collection.table("category").orderBy("id").toArray(data => {
             this.setState({
                 collection: data
