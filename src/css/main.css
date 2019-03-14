@@ -47,6 +47,7 @@
     right:6.25%;
     bottom:56px;
     animation: fab .35s ease-out 0s 1;
+    transition: filter .275s ease-out;
 }
 
 @keyframes fab {

@@ -13,6 +13,10 @@
     font-size:14px;
 }
 
+.setting-panel {
+    width:100%;
+}
+
 .setting-panel > div:first-child {
     border-bottom:1px solid var(--fade);
     margin:0;
@@ -25,4 +29,8 @@
 .setting-panel > div:last-child > div > div > div:first-child {
     padding-top:7px;
     padding-bottom:0;
+}
+
+.setting-panel > div:last-child > div > div > div:last-child > button > span:first-child {
+    cursor:pointer;
 }

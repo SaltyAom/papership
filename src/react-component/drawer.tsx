@@ -52,7 +52,7 @@ class SideComponent extends Component<sideProps, sideState> {
     }
 
     render(){
-        if(this.state.path === this.props.to){
+        if(window.location.pathname === this.props.to){
             return(
                 <ListItem button className="link-container current-route">
                     <Link to={this.props.to} className='link'>

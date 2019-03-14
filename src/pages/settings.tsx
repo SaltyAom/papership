@@ -21,43 +21,73 @@ import "../css/settings.css"
 interface settingProps {
     title: string,
     content: string,
-    button: string,
-    function: any
+    button?: string,
+    function?: any,
+    subtitle?: string
 }
 
 class SettingPanel extends Component<settingProps,{}> {
     render(){
         return(
             <ExpansionPanel className="setting-panel">
-                <ExpansionPanelSummary expandIcon={<i className="material-icons">expand_more</i>}>
+                <ExpansionPanelSummary expandIcon={<i className="material-icons" style={{cursor:"pointer"}}>expand_more</i>}>
                     <p>{this.props.title}</p>
+                    <p>{this.props.subtitle}</p>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <p>{this.props.content}</p>
                 </ExpansionPanelDetails>
-                <ExpansionPanelActions>
-                    <Button color="primary" onClick={() => this.props.function()}>
-                        {this.props.button}
-                    </Button>
-                </ExpansionPanelActions>
+                {this.props.button ?
+                    <ExpansionPanelActions>
+                        {this.props.function ?
+                        <Button color="primary" onClick={() => this.props.function()}>
+                            {this.props.button}
+                        </Button>
+                        :
+                        <Button color="primary">
+                            {this.props.button}
+                        </Button>
+                        }
+                    </ExpansionPanelActions>
+                    : null
+                }
             </ExpansionPanel>
         )
     }
 }
 
 interface state {
-    blur:number
+    blur:number,
+    usage:any,
+    quota:any
 }
 
 export default class extends Component<{},state> {
     constructor(props:any){
         super(props);
         this.state = {
-            blur: 0
+            blur: 0,
+            usage: 0,
+            quota: 0
         }
     }
 
     componentDidMount(){
+        if ('storage' in navigator && 'estimate' in navigator.storage) {
+            navigator.storage.estimate().then((estimate: any) => {
+                if(estimate !== undefined){
+                    this.setState({
+                        usage: Math.round(parseInt(estimate.usage, 10) / 1048576 * 100) / 100,
+                        quota: Math.round(parseInt(estimate.quota, 10) / 1048576 * 100) / 100
+                    })
+                } else {
+                    this.setState({
+                        usage: "Unable to get",
+                        quota: "Unable to get"
+                    })
+                }
+            });
+        }
         store.subscribe(() => {
             let state:any = store.getState(),
                 blur:number = 0;
@@ -132,11 +162,16 @@ export default class extends Component<{},state> {
                     <div></div>
                 </div>
                 <div id="settings" style={{filter: `blur(${this.state.blur}px)`}}>
+                    <SettingPanel
+                        title="Storage"
+                        content="Estimate storage usage and maximum storage usage"
+                        button={`Using ${this.state.usage} out of ${this.state.quota} MB.`}
+                    />
                     <SettingPanel 
                         title="Clear Cache"
                         content="Clear all cache in localstorage and cookies"
                         button="Clear Cache"
-                        function={() => this.cacheUpdate()}
+                        function={() => this.clearCache()}
                     />
                     <SettingPanel 
                         title="Force Update"

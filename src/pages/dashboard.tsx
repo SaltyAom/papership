@@ -181,12 +181,23 @@ export default class extends Component<{}, state> {
         })
     }
 
-    newCollection = (e:any): void => {
+    newCollection = async (e:any) => {
         e.preventDefault();
         if(this.state.selectorValue === "" || this.state.selectorValue === "" || this.state.collectionType === "") return;
-        store.dispatch({
-            type: "blur",
-            blur: 0
+
+        const collection = new Dexie("collection");
+        collection.version(1).stores({
+            category: "++id, name, color, type"
+        })
+
+        let tableCount:number = await collection.table("category").where({name: this.state.title}).count();
+
+        if(tableCount !== 0) return;
+
+        await collection.table("category").put({
+            name: this.state.title,
+            color: this.state.selectorValue,
+            type: this.state.collectionType
         })
 
         this.setState({
@@ -197,15 +208,12 @@ export default class extends Component<{}, state> {
             color: "",
             collectionType: ""
         })
-        const collection = new Dexie("collection")
-        collection.version(1).stores({
-            category: "++id, name, color, type"
-        })
-        collection.table("category").put({
-            name: this.state.title,
-            color: this.state.selectorValue,
-            type: this.state.collectionType
-        })
+
+        store.dispatch({
+            type: "blur",
+            blur: 0
+        });
+
         this.loadCollection();
     }
 
@@ -255,14 +263,29 @@ export default class extends Component<{}, state> {
     }
 
     collectionDelete = async (id:number) => {
-        const collection = new Dexie("collection")
+        const collection = new Dexie("collection"),
+            document = new Dexie("document");
+
         collection.version(1).stores({
             category: "++id, name, color, type"
+        });
+
+        document.version(1).stores({
+            todo: "++id, objective, check, category"
+        });
+
+        let collectionName:string = "";
+        await collection.table("category").where({"id": id}).toArray(data => {
+            return collectionName = `${data[0].name}`;
         })
-        await collection.table("category").where({id: id}).delete();
-            this.setState({
-                collection: []
-            })
+
+        await collection.table("category").where({"id": id}).delete();
+
+        await document.table("todo").where({"category": collectionName}).delete();
+
+        this.setState({
+            collection: []
+        })
         collection.table("category").orderBy("id").toArray(data => {
             this.setState({
                 collection: data
@@ -307,8 +330,7 @@ export default class extends Component<{}, state> {
                         ) }
                         { (this.state.collection[0] === undefined) ? 
                             <Fragment>
-                                <Card color="red" title="New category" current={1} max={2} guide={true} onClick={() => this.dialog(true)} />
-                                <Card color="green" title="Guidance" current={2} max={2} guide={true} />
+                                <Card color="red" title="New category" current={1} max={1} guide={true} onClick={() => this.dialog(true)} />
                             </Fragment> : 
                             <Fragment></Fragment> }
                         <div id="dashboard-end"></div>

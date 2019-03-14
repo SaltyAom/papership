@@ -104,6 +104,9 @@
     align-items: center;
     text-align: center;
     color: #ffffff;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
 }
 
 .dashboard-card > div {
