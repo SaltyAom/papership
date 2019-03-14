@@ -56,8 +56,8 @@
     transform: scale(1.05) rotate(-5deg);
 }
 
-#dashboard-slider > button:first-child { margin-left:16.25%; }
-#dashboard-slider > button:last-child { margin-right:16.25%; }
+#dashboard-slider > button:first-child { margin-left:15.75%; }
+#dashboard-slider > button:last-child { margin-right:15.75%; }
 
 #dashboard-end {
     width:10%;
@@ -72,6 +72,8 @@
 .dashboard-card > h1 {
     display:flex;
     flex:1;
+    width:100%;
+    font-size: 36px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -79,12 +81,17 @@
     overflow:hidden;
     text-overflow: ellipsis;
     word-break: break-word;
+    padding-top:34px;
 }
 
 .dashboard-card > div {
     color:#ffffff;
     text-align: center;
     width:100%;
+}
+
+.dashboard-card > div > h6 {
+    font-size:13px;
 }
 
 .dashboard-progress-bar {
