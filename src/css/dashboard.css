@@ -1,9 +1,8 @@
 #dashboard-slider {
     scroll-snap-type: x mandatory;
     width:calc(100% + 50px);
-    margin-top: 75px;
-    padding-top: 7vh;
-    height: 485px;
+    padding-top: calc(7vh + 75px);
+    height: 600px;
     display:flex;
     overflow-x:auto;
     flex-direction: row;
@@ -18,7 +17,7 @@
 
 #dashboard-slider::-webkit-scrollbar { display:none; }
 
-.dashboard-card {
+.dashboard-card, #dashboard-slider > button {
     scroll-snap-align: center;
     flex: 0 0 auto;
     display:flex;
@@ -26,16 +25,15 @@
     justify-content: space-between;
     align-content: center;
     width:70%;
-    padding: 25px;
     margin: 0 2.5%;
     border-radius: 15px;
     height:300px;
-    background-color: var(--primary);
+    background-color: transparent;
     cursor:pointer;
     transform: rotate(-5deg);
-    box-shadow: 0 25px 50px rgba(0,0,0,.125);
     transition: transform .275s ease-out, box-shadow .275s ease-out;
     animation: card-appear .3s ease-out 0s 1;
+    padding: 25px;
 }
 
 #dashboard-dialog > div:first-child {
@@ -58,8 +56,8 @@
     transform: scale(1.05) rotate(-5deg);
 }
 
-#dashboard-slider > .dashboard-card:first-child { margin-left:13.5%; }
-#dashboard-slider > .dashboard-card:last-child { margin-right:13.5%; }
+#dashboard-slider > button:first-child { margin-left:16.25%; }
+#dashboard-slider > button:last-child { margin-right:16.25%; }
 
 #dashboard-end {
     width:10%;
@@ -70,32 +68,6 @@
     scroll-snap-align: center;
     flex: 0 0 auto;
 }
-
-.dashboard-card.red { 
-    background: var(--gradient-red); 
-    box-shadow: 0 25px 50px rgba(255, 70, 74, 0.4);
-}
-.dashboard-card.red:active { box-shadow: 0 20px 70px rgba(255, 70, 74, 0.7); }
-.dashboard-card.green { 
-    background: var(--gradient-green); 
-    box-shadow: 0 25px 50px rgba(74, 188, 108, 0.4);
-}
-.dashboard-card.green:active { box-shadow: 0 20px 70px rgba(74,188,108, 0.7); }
-.dashboard-card.blue { 
-    background: var(--gradient-blue); 
-    box-shadow: 0 25px 50px rgba(67, 188, 239, 0.4);
-}
-.dashboard-card.blue:active { box-shadow: 0 20px 70px rgba(67,188,239, 0.7); }
-.dashboard-card.pink { 
-    background: var(--gradient-pink); 
-    box-shadow: 0 25px 50px rgba(244, 50, 122, 0.4);
-}
-.dashboard-card.pink:active { box-shadow: 0 20px 70px rgba(244,50,122, 0.7); }
-.dashboard-card.violet { 
-    background: var(--gradient-violet); 
-    box-shadow: 0 25px 50px rgba(108, 22, 225, 0.4);
-}
-.dashboard-card.violet:active { box-shadow: 0 20px 70px rgba(108,22,225, 0.7); }
 
 .dashboard-card > h1 {
     display:flex;
@@ -112,6 +84,7 @@
 .dashboard-card > div {
     color:#ffffff;
     text-align: center;
+    width:100%;
 }
 
 .dashboard-progress-bar {
@@ -187,3 +160,33 @@
     from {top:100vh}
     to {top:0}
 }
+
+.dashboard-card.red { 
+    background: var(--gradient-red); 
+    box-shadow: 0 25px 50px rgba(255, 70, 74, 0.4);
+}
+.dashboard-card.red:active { box-shadow: 0 20px 70px rgba(255, 70, 74, 0.7); }
+
+.dashboard-card.green { 
+    background: var(--gradient-green); 
+    box-shadow: 0 25px 50px rgba(74, 188, 108, 0.4);
+}
+.dashboard-card.green:active { box-shadow: 0 20px 70px rgba(74,188,108, 0.7); }
+
+.dashboard-card.blue {
+    background: var(--gradient-blue); 
+    box-shadow: 0 25px 50px rgba(67, 188, 239, 0.4);
+}
+.dashboard-card.blue:active { box-shadow: 0 20px 70px rgba(67,188,239, 0.7); }
+
+.dashboard-card.pink { 
+    background: var(--gradient-pink); 
+    box-shadow: 0 25px 50px rgba(244, 50, 122, 0.4);
+}
+.dashboard-card.pink:active { box-shadow: 0 20px 70px rgba(244,50,122, 0.7); }
+
+.dashboard-card.violet { 
+    background: var(--gradient-violet); 
+    box-shadow: 0 25px 50px rgba(108, 22, 225, 0.4);
+}
+.dashboard-card.violet:active { box-shadow: 0 20px 70px rgba(108,22,225, 0.7); }

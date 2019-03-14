@@ -1,7 +1,7 @@
 #appbar, #manage-appbar {
     width:100%;
     min-height:30px;
-    background-color:#fff;
+    background-color:rgba(255,255,255,0.9);
     color:var(--white);
     display:flex;
     justify-content: space-between;
@@ -161,13 +161,13 @@ a.link:active { color:var(--fade); }
         margin-top: 35px;
     }
     
-    .dashboard-card {
+    #dashboard-slider > button {
         height: 150px;
     }
 }
 
 @media screen and (min-width: 568px) and (max-width: 767.9px){
-    .dashboard-card {
+    #dashboard-slider > button {
         width:50%;
     }
     #collection, #settings {
@@ -177,31 +177,46 @@ a.link:active { color:var(--fade); }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023.9px){
-    .dashboard-card {
+    #dashboard-slider > button {
         width:35%;
     }
     #collection, #settings {
         padding-left: 10%;
         padding-right: 10%;
     }
+    #manage-list {
+        padding:15px 5%;
+    }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1365.9px){
-    .dashboard-card {
+    #dashboard-slider > button {
         width:30%;
     }
     #collection, #settings {
         padding-left: 15%;
         padding-right: 15%;
     }
+    #collection-create-container,#manage-list {
+        width:800px;
+        margin-left:auto;
+        margin-right:auto;
+        padding: 15px 0;    
+    }
 }
 
 @media screen and (min-width: 1366px) {
-    .dashboard-card {
+    #dashboard-slider > button {
         width:27.5%;
     }
     #collection, #settings {
         padding-left: 20%;
         padding-right: 20%;
+    }
+    #collection-create-container, #manage-list {
+        width:800px;
+        margin-left:auto;
+        margin-right:auto;
+        padding: 15px 0;    
     }
 }

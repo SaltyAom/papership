@@ -88,16 +88,46 @@
 }
 
 .collection-red,
-.collection-check-red > span > svg > path,
-.collection-textfield-red > label[data-shrink*="true"] {color: var(--collection-red) !important;}
+.collection-check-red > span > svg > path {
+    color: var(--collection-red) !important; 
+    fill: var(--collection-red) !important;
+}
 .collection-green,
-.collection-check-green > span > svg > path {color: var(--collection-green) !important;}
+.collection-check-green > span > svg > path {
+    color: var(--collection-green) !important; 
+    fill: var(--collection-green) !important;
+}
 .collection-blue,
-.collection-check-blue > span > svg > path {color: var(--collection-blue) !important;}
+.collection-check-blue > span > svg > path {
+    color: var(--collection-blue) !important;
+    fill: var(--collection-blue) !important;
+}
 .collection-pink,
-.collection-check-pink > span > svg > path {color: var(--collection-pink) !important;}
+.collection-check-pink > span > svg > path {
+    color: var(--collection-pink) !important;
+    fill: var(--collection-pink) !important;
+}
 .collection-violet,
-.collection-check-violet > span > svg > path {color: var(--collection-violet) !important;}
+.collection-check-violet > span > svg > path {
+    color: var(--collection-violet) !important;
+    fill: var(--collection-violet) !important;
+}
+
+.collection-textfield-red > label[data-shrink="true"] {
+    color: var(--collection-red);
+}
+.collection-textfield-green > label[data-shrink="true"] {
+    color: var(--collection-green);
+}
+.collection-textfield-blue > label[data-shrink="true"] {
+    color: var(--collection-blue);
+}
+.collection-textfield-pink > label[data-shrink="true"] {
+    color: var(--collection-pink);
+}
+.collection-textfield-purple > label[data-shrink="true"] {
+    color: var(--collection-purple);
+}
 
 .collection-background-red {background-color: var(--collection-red) !important;}
 .collection-background-green {background-color: var(--collection-green) !important;}
@@ -177,7 +207,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 15px 10%;
+    width:100%;
+    padding:15px 5%;
 }
 
 .strike-through {
