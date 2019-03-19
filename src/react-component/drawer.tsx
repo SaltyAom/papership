@@ -1,16 +1,32 @@
 /* React */
 import React, { Component, Fragment } from 'react'
-import store from "../store/store"
+import { Loadable, Loading, store } from "./Frequent"
 
 /* Material UI */
-import { 
-    SwipeableDrawer,
-    Divider,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText
-} from "@material-ui/core"
+const SwipeableDrawer = Loadable({
+    loader: () => import("@material-ui/core/SwipeableDrawer"),
+    loading: Loading
+}),
+Divider = Loadable({
+    loader: () => import("@material-ui/core/Divider"),
+    loading: Loading
+}),
+List = Loadable({
+    loader: () => import("@material-ui/core/List"),
+    loading: Loading
+}),
+ListItem = Loadable({
+    loader: () => import("@material-ui/core/ListItem"),
+    loading: Loading
+}),
+ListItemIcon = Loadable({
+    loader: () => import("@material-ui/core/ListItemIcon"),
+    loading: Loading
+}),
+ListItemText = Loadable({
+    loader: () => import("@material-ui/core/ListItemText"),
+    loading: Loading
+});
 
 /* Navigation */
 import { Link, withRouter, RouteComponentProps } from "react-router-dom"

@@ -1,7 +1,10 @@
-import React, { Component, Fragment } from "react"
-import store from "../store/store"
-import { IconButton } from "@material-ui/core"
+import React, { Component } from "react"
+import { Loadable, Loading, store } from "./Frequent"
 
+const IconButton = Loadable({
+    loader: () => import("@material-ui/core/IconButton"),
+    loading: Loading    
+})
 interface props {
     function?: any,
     icon?: string,
@@ -32,7 +35,7 @@ export default class extends Component<props, {}> {
                     {this.props.icon !== undefined ?
                     <IconButton color="primary" onClick={() => this.props.function()}>
                         <span className="material-icons">{this.props.icon}</span>
-                    </IconButton> : <Fragment></Fragment> }
+                    </IconButton> : <></> }
                 </div>
             </div>
         )

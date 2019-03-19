@@ -1,19 +1,31 @@
 /* React */
 import React, { Component } from "react"
-import store from "../store/store"
+import { Loadable, Loading, store } from "../react-component/Frequent"
 
 /* Material UI */
 import {
-    IconButton,
-    List,
-    ListItem,
-    ListItemText,
-    Button,
-    ExpansionPanel,
-    ExpansionPanelSummary,
-    ExpansionPanelDetails,
-    ExpansionPanelActions
+    ExpansionPanelSummary
 } from '@material-ui/core'
+const Button = Loadable({
+    loader: () => import("@material-ui/core/Button"),
+    loading: Loading
+})
+,IconButton = Loadable({
+    loader: () => import("@material-ui/core/IconButton"),
+    loading: Loading
+}),
+ExpansionPanel = Loadable({
+    loader: () => import("@material-ui/core/ExpansionPanel"),
+    loading: Loading
+}),
+ExpansionPanelDetails = Loadable({
+    loader: () => import("@material-ui/core/ExpansionPanelDetails"),
+    loading: Loading
+}),
+ExpansionPanelActions = Loadable({
+    loader: () => import("@material-ui/core/ExpansionPanelActions"),
+    loading: Loading
+});
 
 /* Local */
 import "../css/settings.css"

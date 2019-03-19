@@ -1,6 +1,6 @@
 {
   "name": "papership",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.2",
@@ -9,21 +9,25 @@
     "@types/node": "11.11.3",
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.2",
+    "@types/react-loadable": "^5.5.0",
     "@types/react-router-dom": "^4.3.1",
     "dexie": "^2.0.4",
     "firebase": "^5.8.6",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-loadable": "^5.5.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
+    "source-map-explorer": "^1.8.0",
     "typescript": "3.3.3333"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "source-map": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": "react-app"

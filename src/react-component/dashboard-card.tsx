@@ -1,9 +1,12 @@
 /* React */
 import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
-import store from "../store/store"
+import { Loadable, Loading, store } from "./Frequent"
 
-import ButtonBase from '@material-ui/core/ButtonBase';
+const ButtonBase = Loadable({
+    loader: () => import("@material-ui/core/ButtonBase"),
+    loading: Loading
+});
 
 interface props {
     title: string,

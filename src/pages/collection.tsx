@@ -1,26 +1,51 @@
 /* React */
 import React, { Component, Fragment } from "react"
 import { withRouter, RouteComponentProps } from "react-router-dom"
-
-/* Store */
-import store from "../store/store"
-import Dexie from "dexie"
+import { Loadable, Loading, store, Dexie } from "../react-component/Frequent"
 
 /* Material UI */
-import { 
-    Fab,
-    List,
-    ListItem,
-    ListItemText,
-    Checkbox,
-    Button,
-    Dialog,
-    TextField,
-    IconButton
-} from "@material-ui/core"
+const Fab = Loadable({
+    loader: () => import("@material-ui/core/Fab"),
+    loading: Loading
+}),
+List = Loadable({
+    loader: () => import("@material-ui/core/List"),
+    loading: Loading
+}),
+ListItem = Loadable({
+    loader: () => import("@material-ui/core/ListItem"),
+    loading: Loading
+}),
+ListItemText = Loadable({
+    loader: () => import("@material-ui/core/ListItemText"),
+    loading: Loading
+}),
+Checkbox = Loadable({
+    loader: () => import("@material-ui/core/Checkbox"),
+    loading: Loading
+}),
+Button = Loadable({
+    loader: () => import("@material-ui/core/Button"),
+    loading: Loading
+}),
+Dialog = Loadable({
+    loader: () => import("@material-ui/core/Dialog"),
+    loading: Loading
+}),
+TextField = Loadable({
+    loader: () => import("@material-ui/core/TextField"),
+    loading: Loading
+}),
+IconButton = Loadable({
+    loader: () => import("@material-ui/core/IconButton"),
+    loading: Loading
+});
 
 /* Component */
-import Error from "../react-component/error"
+const Error = Loadable({
+    loader: () => import("../react-component/error" /* webpackChunkName: "error" */),
+    loading: Loading
+});
 
 /* Local */
 import "../css/collection.css"
@@ -40,7 +65,7 @@ class CollectionLanding extends Component<sideProps, {}> {
     }
 
     render(){
-        let progress = this.props.progress.min / this.props.progress.max * 100
+        let progress:number = this.props.progress.min / this.props.progress.max * 100
         return(
             <Fragment>
                 <h1 id="collection-name">{this.props.collection}</h1>

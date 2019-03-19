@@ -1,29 +1,72 @@
 /* React */
 import React, { Component, Fragment } from "react"
-import Dexie from "dexie"
-import store from "../store/store"
+import { Loadable, Loading, store, Dexie } from "../react-component/Frequent"
 
 /* Material UI */
-import { 
-    Button,
-    TextField,
-    Select,
-    Dialog,
-    MenuItem,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    FormControl,
-    InputLabel,
-    OutlinedInput,
-    Fab,
-    IconButton,
-    ListItem
-} from "@material-ui/core"
+import { MenuItem } from "@material-ui/core"
+
+const Button = Loadable({
+    loader: () => import("@material-ui/core/Button"),
+    loading: Loading
+}),
+TextField = Loadable({
+    loader: () => import("@material-ui/core/TextField"),
+    loading: Loading
+}),
+Select = Loadable({
+    loader: () => import("@material-ui/core/Select"),
+    loading: Loading
+}),
+Dialog = Loadable({
+    loader: () => import("@material-ui/core/Dialog"),
+    loading: Loading
+}),
+DialogActions = Loadable({
+    loader: () => import("@material-ui/core/DialogActions"),
+    loading: Loading
+}),
+DialogContent = Loadable({
+    loader: () => import("@material-ui/core/DialogContent"),
+    loading: Loading
+}),
+DialogTitle = Loadable({
+    loader: () => import("@material-ui/core/DialogTitle"),
+    loading: Loading
+}),
+FormControl = Loadable({
+    loader: () => import("@material-ui/core/FormControl"),
+    loading: Loading
+}),
+InputLabel = Loadable({
+    loader: () => import("@material-ui/core/InputLabel"),
+    loading: Loading
+}),
+OutlinedInput = Loadable({
+    loader: () => import("@material-ui/core/OutlinedInput"),
+    loading: Loading
+}),
+Fab = Loadable({
+    loader: () => import("@material-ui/core/Fab"),
+    loading: Loading
+}),
+IconButton = Loadable({
+    loader: () => import("@material-ui/core/IconButton"),
+    loading: Loading
+}),
+ListItem = Loadable({
+    loader: () => import("@material-ui/core/ListItem"),
+    loading: Loading
+});
 
 /* Component */
-import Card from "../react-component/dashboard-card"
-import Appbar from "../react-component/appbar"
+const Card = Loadable({
+    loader: () => import("../react-component/dashboard-card" /* webpackChunkName: "settings" */),
+    loading: Loading
+}),
+Appbar = Loadable({
+    loader: () => import("../react-component/appbar" /* webpackChunkName: "appbar" */),
+    loading: Loading
+});
 
 /* Local */
 import "../css/dashboard.css"
@@ -343,7 +386,7 @@ export default class extends Component<{}, state> {
                                 type="text"
                                 fullWidth
                                 variant="outlined"
-                                onChange={e => this.handleTitle(e)}
+                                onChange={(e:any) => this.handleTitle(e)}
                                 value={this.state.title}
                                 style={{marginTop:"20px",marginBottom:"0px"}}
                             />
@@ -357,7 +400,7 @@ export default class extends Component<{}, state> {
                                     onClose={() => this.toggleSelector(false)}
 
                                     value={this.state.selectorValue}
-                                    onChange={e => this.selectorChange(e)}
+                                    onChange={(e:any) => this.selectorChange(e)}
                                     fullWidth
                                     required
 
@@ -399,7 +442,7 @@ export default class extends Component<{}, state> {
                                     onClose={() => this.toggleTypeSelector(false)}
 
                                     value={this.state.collectionType}
-                                    onChange={e => this.typeSelectorChange(e)}
+                                    onChange={(e:any) => this.typeSelectorChange(e)}
                                     fullWidth
                                     required
 

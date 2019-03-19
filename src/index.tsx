@@ -1,22 +1,36 @@
 /* React */
-import React, { Component } from 'react'
+import React, { Component, Suspense, lazy } from 'react'
 import ReactDOM from 'react-dom'
-import store from "./store/store"
+import { Loadable, Loading } from "./react-component/Frequent"
 
 /* Navigator */
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 /* Material UI */
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+const MuiThemeProvider = lazy(() => import('@material-ui/core/styles/MuiThemeProvider'));
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import { blue } from "@material-ui/core/colors"
 
-/* React Component */
-import Drawer from "./react-component/drawer"
-import Dashboard from "./pages/dashboard"
-import Collection from "./pages/collection"
-import Settings from "./pages/settings"
-import Error from "./react-component/error"
+const Drawer = Loadable({
+    loader: () => import("./react-component/drawer" /* webpackChunkName: "drawer" */),
+    loading: Loading
+}),
+Dashboard = Loadable({
+    loader: () => import("./pages/dashboard" /* webpackChunkName: "dashboard" */),
+    loading: Loading
+}),
+Collection = Loadable({
+    loader: () => import("./pages/collection" /* webpackChunkName: "collection" */),
+    loading: Loading
+}),
+Settings = Loadable({
+    loader: () => import("./pages/settings" /* webpackChunkName: "settings" */),
+    loading: Loading
+}),
+Error = Loadable({
+    loader: () => import("./react-component/error" /* webpackChunkName: "error" */),
+    loading: Loading
+});
 
 /* CSS */
 import "./material-icon/material-icons.css"
@@ -47,24 +61,26 @@ class App extends Component<{}, state> {
     render(){
         return(
             <Router>
-                <MuiThemeProvider theme={theme}>
-                    { process.env.NODE_ENV === "development" ?                    
-                        <div id="dev">
-                            <div id="title">Development</div>
-                            <div id="line"></div>
-                        </div>
-                    : null }
+                <Suspense fallback={<Loading />}>
+                    <MuiThemeProvider theme={theme}>
+                        { process.env.NODE_ENV === "development" ?                    
+                            <div id="dev">
+                                <div id="title">Development</div>
+                                <div id="line"></div>
+                            </div>
+                        : null }
 
-                    <Drawer />
+                        <Drawer />
 
-                    <Switch>
-                        <Route exact path="/" component={Dashboard} />
-                        <Route path="/settings" component={Settings} />
-                        <Route path="/collection" component={Collection} />
-                        <Route component={Error} />
-                    </Switch>
+                        <Switch>
+                            <Route exact path="/" component={Dashboard} />
+                            <Route path="/settings" component={Settings} />
+                            <Route path="/collection" component={Collection} />
+                            <Route component={Error} />
+                        </Switch>
 
-                </MuiThemeProvider>
+                    </MuiThemeProvider>
+                </Suspense>
             </Router>
         )
     }
