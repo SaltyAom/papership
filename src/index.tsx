@@ -53,6 +53,7 @@ const theme = createMuiTheme({
 interface state {
     blur:number
 }
+
 class App extends Component<{}, state> {
     constructor(props:any){
         super(props);

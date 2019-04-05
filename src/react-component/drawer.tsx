@@ -2,7 +2,16 @@
 import React, { Component, Fragment } from 'react'
 import { Loadable, Loading, store } from "./Frequent"
 
-/* Material UI */
+import {
+    SwipeableDrawer,
+    Divider,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText
+} from "@material-ui/core"
+
+/*
 const SwipeableDrawer = Loadable({
     loader: () => import("@material-ui/core/SwipeableDrawer"),
     loading: Loading
@@ -27,6 +36,7 @@ ListItemText = Loadable({
     loader: () => import("@material-ui/core/ListItemText"),
     loading: Loading
 });
+*/
 
 /* Navigation */
 import { Link, withRouter, RouteComponentProps } from "react-router-dom"

@@ -47,7 +47,8 @@
     right:6.25%;
     bottom:56px;
     animation: fab .35s ease-out 0s 1;
-    transition: filter .275s ease-out;
+    background-color: var(--primary-1) !important;
+    transition: box-shadow .3s ease-out !important;
 }
 
 @keyframes fab {
@@ -73,13 +74,13 @@
 #main, #err {
     width:100%;
     min-height:100vh;
+    position: relative !important;
     padding-top:75px;
     display:flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     background-color: #fff;
-    transition: filter .275s ease-out;
     position: fixed;
 }
 
@@ -156,35 +157,24 @@ a.link:active { color:var(--fade); }
     font-weight: bold;
 }
 
-@media screen and (max-height:450px) {
-    #dashboard-slider {
-        margin-top: 0 !important;
-        top:5vh !important;
-    }
-    
-    .dashboard-card > h1 {
-        padding-top:0 !important;
-    }
-
-    #dashboard-slider > button {
-        height: 175px !important;
-    }
+@media screen and (max-height:450px) {    
 }
 
 @media screen and (min-width: 568px) and (max-width: 767.9px){
-    #dashboard-slider > button {
-        width:50% !important;
-    }
     #collection, #settings {
         padding-left: 7.5% !important;
         padding-right: 7.5% !important;
     }
+    .dashboard-slider {
+        width:100% !important;
+        padding: 0 3.75%;
+    }
+    .dashboard-card {
+        width:100% !important;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023.9px){
-    #dashboard-slider > button {
-        width:35% !important;
-    }
     #collection, #settings {
         padding-left: 10% !important;
         padding-right: 10% !important;
@@ -192,36 +182,54 @@ a.link:active { color:var(--fade); }
     #manage-list {
         padding:15px 5% !important;
     }
+    .dashboard-slider {
+        width:600px !important;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .dashboard-card {
+        width:100% !important;
+    }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1365.9px){
-    #dashboard-slider > button {
-        width:30% !important;
-    }
     #collection, #settings {
         padding-left: 15% !important;
         padding-right: 15% !important;
     }
     #collection-create-container,#manage-list {
-        width:800px !important;
+        width:600px !important;
         margin-left:auto !important;
         margin-right:auto !important;
         padding: 15px 0 !important;
     }
+    .dashboard-slider {
+        width:600px !important;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .dashboard-card {
+        width:100% !important;
+    }
 }
 
 @media screen and (min-width: 1366px) {
-    #dashboard-slider > button, .dashboard-card {
-        width:27.5% !important;
-    }
     #collection, #settings {
         padding-left: 20% !important;
         padding-right: 20% !important;
     }
     #collection-create-container, #manage-list {
-        width:800px !important;
+        width:600px !important;
         margin-left:auto !important;
         margin-right:auto !important;
         padding: 15px 0 !important; 
+    }
+    .dashboard-slider {
+        width:600px !important;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .dashboard-card {
+        width:100% !important;
     }
 }

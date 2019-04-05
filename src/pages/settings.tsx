@@ -4,8 +4,15 @@ import { Loadable, Loading, store } from "../react-component/Frequent"
 
 /* Material UI */
 import {
-    ExpansionPanelSummary
+    ExpansionPanelSummary,
+    Button,
+    IconButton,
+    ExpansionPanel,
+    ExpansionPanelDetails,
+    ExpansionPanelActions
 } from '@material-ui/core'
+
+/*
 const Button = Loadable({
     loader: () => import("@material-ui/core/Button"),
     loading: Loading
@@ -26,6 +33,7 @@ ExpansionPanelActions = Loadable({
     loader: () => import("@material-ui/core/ExpansionPanelActions"),
     loading: Loading
 });
+*/
 
 /* Local */
 import "../css/settings.css"
