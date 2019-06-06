@@ -1,75 +1,31 @@
 /* React */
 import React, { Component, Fragment } from "react"
-import { Loadable, Loading, store, Dexie } from "../react-component/Frequent"
+import { store, Dexie } from "../react-component/Frequent"
 
 /* Material UI */
-import { MenuItem } from "@material-ui/core"
+import { 
+    Button,
+    MenuItem,
+    TextField,
+    Select,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    FormControl,
+    InputLabel,
+    OutlinedInput,
+    Fab,
+    IconButton,
+    ListItem
+} from "@material-ui/core"
+
+/* Component */
+import Card from "../react-component/dashboard-card" /* webpackChunkName: "settings" */
+import Appbar from "../react-component/appbar" /* webpackChunkName: "appbar" */
 
 /* Local */
 import "../css/dashboard.css"
-
-const Button = Loadable({
-    loader: () => import("@material-ui/core/Button"),
-    loading: Loading
-}),
-TextField = Loadable({
-    loader: () => import("@material-ui/core/TextField"),
-    loading: Loading
-}),
-Select = Loadable({
-    loader: () => import("@material-ui/core/Select"),
-    loading: Loading
-}),
-Dialog = Loadable({
-    loader: () => import("@material-ui/core/Dialog"),
-    loading: Loading
-}),
-DialogActions = Loadable({
-    loader: () => import("@material-ui/core/DialogActions"),
-    loading: Loading
-}),
-DialogContent = Loadable({
-    loader: () => import("@material-ui/core/DialogContent"),
-    loading: Loading
-}),
-DialogTitle = Loadable({
-    loader: () => import("@material-ui/core/DialogTitle"),
-    loading: Loading
-}),
-FormControl = Loadable({
-    loader: () => import("@material-ui/core/FormControl"),
-    loading: Loading
-}),
-InputLabel = Loadable({
-    loader: () => import("@material-ui/core/InputLabel"),
-    loading: Loading
-}),
-OutlinedInput = Loadable({
-    loader: () => import("@material-ui/core/OutlinedInput"),
-    loading: Loading
-}),
-Fab = Loadable({
-    loader: () => import("@material-ui/core/Fab"),
-    loading: Loading
-}),
-IconButton = Loadable({
-    loader: () => import("@material-ui/core/IconButton"),
-    loading: Loading
-}),
-ListItem = Loadable({
-    loader: () => import("@material-ui/core/ListItem"),
-    loading: Loading
-});
-
-/* Component */
-const Card = Loadable({
-    loader: () => import("../react-component/dashboard-card" /* webpackChunkName: "settings" */),
-    loading: Loading
-}),
-Appbar = Loadable({
-    loader: () => import("../react-component/appbar" /* webpackChunkName: "appbar" */),
-    loading: Loading
-});
 
 interface collectionProps {
     name: string,

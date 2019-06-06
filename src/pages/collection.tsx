@@ -1,54 +1,25 @@
 /* React */
 import React, { Component, Fragment } from "react"
 import { withRouter, RouteComponentProps } from "react-router-dom"
-import { Loadable, Loading, store, Dexie } from "../react-component/Frequent"
+import { store, Dexie } from "../react-component/Frequent"
 
-/* Material UI */
-const Fab = Loadable({
-    loader: () => import("@material-ui/core/Fab"),
-    loading: Loading
-}),
-List = Loadable({
-    loader: () => import("@material-ui/core/List"),
-    loading: Loading
-}),
-ListItem = Loadable({
-    loader: () => import("@material-ui/core/ListItem"),
-    loading: Loading
-}),
-ListItemText = Loadable({
-    loader: () => import("@material-ui/core/ListItemText"),
-    loading: Loading
-}),
-Checkbox = Loadable({
-    loader: () => import("@material-ui/core/Checkbox"),
-    loading: Loading
-}),
-Button = Loadable({
-    loader: () => import("@material-ui/core/Button"),
-    loading: Loading
-}),
-Dialog = Loadable({
-    loader: () => import("@material-ui/core/Dialog"),
-    loading: Loading
-}),
-TextField = Loadable({
-    loader: () => import("@material-ui/core/TextField"),
-    loading: Loading
-}),
-IconButton = Loadable({
-    loader: () => import("@material-ui/core/IconButton"),
-    loading: Loading
-});
+import {
+    Fab,
+    List,
+    ListItem,
+    ListItemText,
+    Checkbox,
+    Button,
+    Dialog,
+    TextField,
+    IconButton
+} from "@material-ui/core"
 
 /* Component */
-const Error = Loadable({
-    loader: () => import("../react-component/error" /* webpackChunkName: "error" */),
-    loading: Loading
-});
+import Error from "../react-component/error" /* webpackChunkName: "error" */
 
 /* Local */
-require("../css/collection.css");
+import "../css/collection.css"
 
 /* Side Component */
 interface sideProps {
