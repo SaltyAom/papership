@@ -5,6 +5,9 @@ import { Loadable, Loading, store, Dexie } from "../react-component/Frequent"
 /* Material UI */
 import { MenuItem } from "@material-ui/core"
 
+/* Local */
+import "../css/dashboard.css"
+
 const Button = Loadable({
     loader: () => import("@material-ui/core/Button"),
     loading: Loading
@@ -68,9 +71,6 @@ Appbar = Loadable({
     loading: Loading
 });
 
-/* Local */
-import "../css/dashboard.css"
-
 interface collectionProps {
     name: string,
     id: number,
@@ -78,15 +78,12 @@ interface collectionProps {
 }
 
 class CollectionList extends Component<collectionProps, {}>{
-    constructor(props: collectionProps){
-        super(props);
-    }
-
     render(){
         return(
             <ListItem
                 className="collection-list"
                 divider
+                button
             >
                 <p>
                     <i className="material-icons">view_week</i>
@@ -287,6 +284,7 @@ export default class extends Component<{}, state> {
                 let iter:number = 0;
                 arr.map((data, index) => {
                     if(data.check === true) return ++iter
+                    return iter
                 })
                 this.setState(prevState => ({
                     collectionData: [...prevState.collectionData, {
@@ -336,11 +334,11 @@ export default class extends Component<{}, state> {
     render(){
         return(
             <Fragment>
-                <Appbar icon="add" blur={this.state.blur} function={() => this.dialog(true)} />
+                <Appbar icon="more_vert" blur={this.state.blur} function={() => this.viewCollection(true)} />
                 <Fab 
                     id="fab" 
                     color="primary" 
-                    onClick={() => this.viewCollection(true)}
+                    onClick={() => this.dialog(true)}
                     style={{filter: `blur(${this.state.blur}px)`}}
                 >
                     <span className="material-icons" style={{color: "white"}}>create</span>

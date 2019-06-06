@@ -7,9 +7,16 @@ import { Loadable, Loading } from "./react-component/Frequent"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 /* Material UI */
-const MuiThemeProvider = lazy(() => import('@material-ui/core/styles/MuiThemeProvider'));
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import { blue } from "@material-ui/core/colors"
+
+/* CSS */
+import "./material-icon/material-icons.css"
+import "./css/init.css"
+import "./css/main.css"
+import "./css/dev.css"
+
+const MuiThemeProvider = lazy(() => import('@material-ui/core/styles/MuiThemeProvider'));
 
 const Drawer = Loadable({
     loader: () => import("./react-component/drawer" /* webpackChunkName: "drawer" */),
@@ -32,21 +39,12 @@ Error = Loadable({
     loading: Loading
 });
 
-/* CSS */
-import "./material-icon/material-icons.css"
-import "./css/init.css"
-import "./css/main.css"
-import "./css/dev.css"
-
 const theme = createMuiTheme({
   palette: {
     primary: blue,
     secondary: {
         main: "#fafafa"
     }
-  },
-  typography: {
-    useNextVariants: true,
   }
 });
 
@@ -54,10 +52,6 @@ interface state {
     blur:number
 }
 class App extends Component<{}, state> {
-    constructor(props:any){
-        super(props);
-    }
-
     render(){
         return(
             <Router>

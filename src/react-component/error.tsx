@@ -1,5 +1,5 @@
 /* React */
-import React, { Component, Fragment } from "react"
+import React, { Component } from "react"
 import { Loadable, Loading, store } from "./Frequent"
 
 /* Navigation */

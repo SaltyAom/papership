@@ -2,6 +2,12 @@
 import React, { Component, Fragment } from 'react'
 import { Loadable, Loading, store } from "./Frequent"
 
+/* Navigation */
+import { Link, withRouter, RouteComponentProps } from "react-router-dom"
+
+/* Local */
+import "../css/drawer.css"
+
 /* Material UI */
 const SwipeableDrawer = Loadable({
     loader: () => import("@material-ui/core/SwipeableDrawer"),
@@ -27,12 +33,6 @@ ListItemText = Loadable({
     loader: () => import("@material-ui/core/ListItemText"),
     loading: Loading
 });
-
-/* Navigation */
-import { Link, withRouter, RouteComponentProps } from "react-router-dom"
-
-/* Local */
-import "../css/drawer.css"
 
 /* Side Component */
 interface sideProps {
@@ -63,7 +63,7 @@ class SideComponent extends Component<sideProps, sideState> {
         })
     }
 
-    componentWillUnMount(){
+    componentWillUnmount(){
         store.subscribe(() => {})
     }
 

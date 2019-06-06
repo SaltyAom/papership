@@ -6,6 +6,10 @@ import { Loadable, Loading, store } from "../react-component/Frequent"
 import {
     ExpansionPanelSummary
 } from '@material-ui/core'
+
+/* Local */
+import "../css/settings.css"
+
 const Button = Loadable({
     loader: () => import("@material-ui/core/Button"),
     loading: Loading
@@ -26,9 +30,6 @@ ExpansionPanelActions = Loadable({
     loader: () => import("@material-ui/core/ExpansionPanelActions"),
     loading: Loading
 });
-
-/* Local */
-import "../css/settings.css"
 
 interface settingProps {
     title: string,

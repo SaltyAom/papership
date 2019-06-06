@@ -48,7 +48,7 @@ const Error = Loadable({
 });
 
 /* Local */
-import "../css/collection.css"
+require("../css/collection.css");
 
 /* Side Component */
 interface sideProps {
@@ -60,10 +60,6 @@ interface sideProps {
 }
 
 class CollectionLanding extends Component<sideProps, {}> {
-    constructor(props: sideProps){
-        super(props);
-    }
-
     render(){
         let progress:number = this.props.progress.min / this.props.progress.max * 100
         return(
@@ -279,6 +275,7 @@ class Collection extends Component<props, state> {
                             })
                         }
                         if(data.check === true) return ++iter
+                        return iter;
                     })
                     this.setState({
                         progress:{
@@ -316,7 +313,7 @@ class Collection extends Component<props, state> {
 
             let iter:number = 0;
             await arr.map((data, index) => {
-                if(this.state.current === "" && data.check == false){
+                if(this.state.current === "" && data.check === false){
                     this.setState({
                         current: data.objective
                     })
@@ -325,6 +322,7 @@ class Collection extends Component<props, state> {
                     documentData: [...prevState.documentData, data]
                 }))
                 if(data.check === true) return ++iter
+                return iter
             })
             this.setState({
                 progress: {
