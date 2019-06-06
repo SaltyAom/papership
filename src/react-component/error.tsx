@@ -1,14 +1,11 @@
 /* React */
 import React, { Component } from "react"
-import { Loadable, Loading, store } from "./Frequent"
+import { store } from "./Frequent"
 
 /* Navigation */
 import { Link } from "react-router-dom"
-const Button = Loadable({
-    loader: () => import("@material-ui/core/Button"),
-    loading: Loading
-})
 
+import { Button } from "@material-ui/core"
 interface state {
     blur:number
 }

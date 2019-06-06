@@ -1,6 +1,6 @@
 /* React */
 import React, { Component, Fragment } from 'react'
-import { Loadable, Loading, store } from "./Frequent"
+import { store } from "./Frequent"
 
 /* Navigation */
 import { Link, withRouter, RouteComponentProps } from "react-router-dom"
@@ -8,31 +8,14 @@ import { Link, withRouter, RouteComponentProps } from "react-router-dom"
 /* Local */
 import "../css/drawer.css"
 
-/* Material UI */
-const SwipeableDrawer = Loadable({
-    loader: () => import("@material-ui/core/SwipeableDrawer"),
-    loading: Loading
-}),
-Divider = Loadable({
-    loader: () => import("@material-ui/core/Divider"),
-    loading: Loading
-}),
-List = Loadable({
-    loader: () => import("@material-ui/core/List"),
-    loading: Loading
-}),
-ListItem = Loadable({
-    loader: () => import("@material-ui/core/ListItem"),
-    loading: Loading
-}),
-ListItemIcon = Loadable({
-    loader: () => import("@material-ui/core/ListItemIcon"),
-    loading: Loading
-}),
-ListItemText = Loadable({
-    loader: () => import("@material-ui/core/ListItemText"),
-    loading: Loading
-});
+import {
+    SwipeableDrawer,
+    Divider,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText
+} from '@material-ui/core'
 
 /* Side Component */
 interface sideProps {

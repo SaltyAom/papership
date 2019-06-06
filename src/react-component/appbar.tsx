@@ -1,10 +1,8 @@
 import React, { Component } from "react"
-import { Loadable, Loading, store } from "./Frequent"
+import { store } from "./Frequent"
 
-const IconButton = Loadable({
-    loader: () => import("@material-ui/core/IconButton"),
-    loading: Loading    
-})
+import { IconButton } from '@material-ui/core'
+
 interface props {
     function?: any,
     icon?: string,

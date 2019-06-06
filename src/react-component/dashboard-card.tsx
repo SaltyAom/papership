@@ -1,12 +1,11 @@
 /* React */
 import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
-import { Loadable, Loading, store } from "./Frequent"
+import { store } from "./Frequent"
 
-const ButtonBase = Loadable({
-    loader: () => import("@material-ui/core/ButtonBase"),
-    loading: Loading
-});
+import {
+    ButtonBase
+} from "@material-ui/core"
 
 interface props {
     title: string,
