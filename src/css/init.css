@@ -1,11 +1,17 @@
 @font-face {
-    font-family:"Roboto";
-    src:url("../fonts/Roboto-Regular.ttf");
+    font-family:"Hololens";
+    src:url("../fonts/HoloSymMDL2.ttf");
 }
 
 :root {
   --primary: #007aff;
+  --primary-1: #008aff;
+  --primary-2: #009aff;
+
   --secondary: #ffffff;
+  --secondary-2: #eeeeee;
+  --secondary-3: #dddddd;
+
   --title: #039be5;
   --fade: #ceced2;
   --preload: #efeff4; 
@@ -19,10 +25,24 @@
   --white: #fafafa;
 
   --collection-red: #e03a3e;
+  --collection-red-1: #cf3a3e;
+  --collection-red-2: #be3a3e;
+
   --collection-green: #61bb46;
+  --coolection-green-1: #61cc46;
+  --collection-green: #61dd46;
+
   --collection-blue: #007aff;
+  --collection-blue-1: #008aff;
+  --collection-blue-2: #009aff;
+
   --collection-pink: #ff2d55;
+  --colletion-pink: #ee3255;
+  --colletion-pink: #dd3755;
+
   --collection-violet: #963d97;
+  --colletion-violet: #a73da1;
+  --colletion-violet: #b83dab;
 
   --gradient-red: linear-gradient(135deg, #FF4B2B, #FF416C);
   --gradient-green: linear-gradient(135deg, #00b09b, #96c93d);
@@ -33,7 +53,7 @@
 
 ::selection, ::-webkit-selection { background-color: rgba(0,123,255,.25); }
 
-* {box-sizing: border-box; transition: filter .275s ease-out;}
+* {box-sizing: border-box; }
 
 body {
   margin: 0;

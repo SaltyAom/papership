@@ -62,14 +62,8 @@ ListItem = Loadable({
 });
 
 /* Component */
-const Card = Loadable({
-    loader: () => import("../react-component/dashboard-card" /* webpackChunkName: "settings" */),
-    loading: Loading
-}),
-Appbar = Loadable({
-    loader: () => import("../react-component/appbar" /* webpackChunkName: "appbar" */),
-    loading: Loading
-});
+import Card from "../react-component/dashboard-card"
+import Appbar from "../react-component/appbar"
 
 interface collectionProps {
     name: string,
@@ -344,7 +338,7 @@ export default class extends Component<{}, state> {
                     <span className="material-icons" style={{color: "white"}}>create</span>
                 </Fab>
                 <div id="main" style={{filter: `blur(${this.state.blur}px)`}}>
-                    <div id="dashboard-slider">
+                    <div className="dashboard-slider">
                         { this.state.collection.map((data: any, index:number) => 
                             <Fragment key={index}>
                                 {this.state.collectionData[index] !== undefined ?

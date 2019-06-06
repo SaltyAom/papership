@@ -3,17 +3,18 @@
     width:100%;
     height:calc(100vh - 58px);
     position:fixed;
-    z-index:1000;
+    z-index:9000;
     top:58px;
     left:0;
     padding-bottom:58px;
-    background-color:#fff;
+    background-color:transparent;
 }
 
 .loader {
     position: relative;
     margin: 0 auto;
     width: 100px;
+    animation: loader-in 3s ease-out 0s 1;
 }
 
 .loader:before {
@@ -21,7 +22,13 @@
     display: block;
     padding-top: 100%;
 }
-  
+
+@keyframes loader-in {
+  0% { opacity:0; }
+  95% { opacity:0; }
+  100% { opacity:1; }
+}
+
 .circular {
     animation: rotate 2s linear infinite;
     height: 100%;
@@ -34,6 +41,13 @@
     right: 0;
     margin: auto;
 }
+
+.circular-shadow {
+  top:5px !important;
+  left:5px !important;
+  opacity:.25;
+  filter: blur(5px);
+}
   
 .path {
     stroke-dasharray: 1, 200;
@@ -41,6 +55,10 @@
     animation: dash 1.5s ease-in-out infinite;
     stroke-linecap: round;
     stroke: #007aff;
+}
+
+.path-shadow {
+  stroke: #000 !important;
 }
   
 @keyframes rotate {

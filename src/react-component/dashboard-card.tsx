@@ -3,10 +3,9 @@ import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
 import { Loadable, Loading, store } from "./Frequent"
 
-const ButtonBase = Loadable({
-    loader: () => import("@material-ui/core/ButtonBase"),
-    loading: Loading
-});
+import {
+    Button
+} from "@material-ui/core"
 
 interface props {
     title: string,
@@ -49,29 +48,57 @@ export default class extends Component<props,state> {
         }
         if(this.props.onClick){
             return(
-                <ButtonBase onClick={e => this.props.onClick()} className={`dashboard-card ${this.props.color}`}>
-                    <p className="hidden-card-length">---------------------------------------------------------------------------------------</p>
-                    <h1>{this.props.title}</h1>
-                    <div>
-                        <h6>{`${this.props.current}`}/{`${this.props.max}`}</h6>
-                        <div className="dashboard-progress-bar">
-                            <div style={{width: `${percent}%`}}></div>
+                <div onClick={e => this.props.onClick(e)} className={`dashboard-card`}>
+                    <div className={`dashboard-card-title color-${this.props.color}`}>
+                        <i className="material-icons">playlist_add_check</i>
+                    </div>
+                    <div className="dashboard-card-body-wrapper">
+                        <div className="dashboard-card-body">
+                            <h1>{this.props.title}</h1>
+                            <div className="dashboard-card-footer">
+                                <div className="dashboard-progress-wrapper">
+                                    <div className="dashboard-progress-content">
+                                        {`${this.props.current}`}/{`${this.props.max}`}
+                                    </div>
+                                    <div className="dashboard-progress-bar">
+                                        <div className={`dashboard-progress color-${this.props.color}`} style={{width: `${percent}%`}}>
+                                        </div>
+                                    </div>
+                                </div>
+                                <Button variant="contained" color="primary" className={`color-${this.props.color}`}>
+                                    See <i className="material-icons">chevron_right</i>
+                                </Button>
+                            </div>
                         </div>
                     </div>
-                </ButtonBase>
+                </div>            
             )
         } else {
             return(
-                <ButtonBase onClick={e => this.redirect(e)} className={`dashboard-card ${this.props.color}`}>
-                    <p className="hidden-card-length">---------------------------------------------------------------------------------------</p>
-                    <h1>{this.props.title}</h1>
-                    <div>
-                        <h6>{`${this.props.current}`}/{`${this.props.max}`}</h6>
-                        <div className="dashboard-progress-bar">
-                            <div style={{width: `${percent}%`}}></div>
+                <div onClick={e => this.redirect(e)} className={`dashboard-card`}>
+                    <div className={`dashboard-card-title color-${this.props.color}`}>
+                        <i className="material-icons">playlist_add_check</i>
+                    </div>
+                    <div className="dashboard-card-body-wrapper">
+                        <div className="dashboard-card-body">
+                            <h1>{this.props.title}</h1>
+                            <div className="dashboard-card-footer">
+                                <div className="dashboard-progress-wrapper">
+                                    <div className="dashboard-progress-content">
+                                        {`${this.props.current}`}/{`${this.props.max}`}
+                                    </div>
+                                    <div className="dashboard-progress-bar">
+                                        <div className={`dashboard-progress color-${this.props.color}`} style={{width: `${percent}%`}}>
+                                        </div>
+                                    </div>
+                                </div>
+                                <Button variant="contained" color="primary" className={`color-${this.props.color}`}>
+                                    See <i className="material-icons">chevron_right</i>
+                                </Button>
+                            </div>
                         </div>
                     </div>
-                </ButtonBase>
+                </div>
             )
         }
     }

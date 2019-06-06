@@ -1,6 +1,6 @@
 {
   "name": "papership",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.0.2",

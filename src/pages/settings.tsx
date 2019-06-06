@@ -4,32 +4,16 @@ import { Loadable, Loading, store } from "../react-component/Frequent"
 
 /* Material UI */
 import {
-    ExpansionPanelSummary
+    ExpansionPanelSummary,
+    Button,
+    IconButton,
+    ExpansionPanel,
+    ExpansionPanelDetails,
+    ExpansionPanelActions
 } from '@material-ui/core'
 
 /* Local */
 import "../css/settings.css"
-
-const Button = Loadable({
-    loader: () => import("@material-ui/core/Button"),
-    loading: Loading
-})
-,IconButton = Loadable({
-    loader: () => import("@material-ui/core/IconButton"),
-    loading: Loading
-}),
-ExpansionPanel = Loadable({
-    loader: () => import("@material-ui/core/ExpansionPanel"),
-    loading: Loading
-}),
-ExpansionPanelDetails = Loadable({
-    loader: () => import("@material-ui/core/ExpansionPanelDetails"),
-    loading: Loading
-}),
-ExpansionPanelActions = Loadable({
-    loader: () => import("@material-ui/core/ExpansionPanelActions"),
-    loading: Loading
-});
 
 interface settingProps {
     title: string,

@@ -4,6 +4,19 @@ import { withRouter, RouteComponentProps } from "react-router-dom"
 import { Loadable, Loading, store, Dexie } from "../react-component/Frequent"
 
 /* Material UI */
+import {
+    Fab,
+    List,
+    ListItem,
+    ListItemText,
+    Checkbox,
+    Button,
+    Dialog,
+    TextField,
+    IconButton
+} from "@material-ui/core"
+
+/*
 const Fab = Loadable({
     loader: () => import("@material-ui/core/Fab"),
     loading: Loading
@@ -40,6 +53,7 @@ IconButton = Loadable({
     loader: () => import("@material-ui/core/IconButton"),
     loading: Loading
 });
+*/
 
 /* Component */
 const Error = Loadable({
